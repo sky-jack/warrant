@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="./bower_components/mocha.css" />
+    </head>
+    <body>
+        <div id="mocha"></div>
+        <script src="../bower_components/mocha.js"></script>
+        <script src="../bower_components/chai.js"></script>
+        <script src="../bower_components/lib/proclaim.js"></script>
+        <script>
+        var expect = chai.expect;
+
+        mocha.setup({
+            ui: 'bdd',
+            ignoreLeaks: true
+        });
+
+        onload = function () {
+            mocha.run();
+        };
+        </script>
+        <script src="TODO"></script> <!-- Include source -->
+        <script src="spec.js"></script>
+    </body>
+</html>
