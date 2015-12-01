@@ -10,8 +10,23 @@
         <script src="../bower_components/chai/chai.js"></script>
         <script src="../bower_components/mocha/mocha.js"></script>
         <script src="../bower_components/proclaim/lib/proclaim.js"></script>
-        <script src="../lib/warrant.js"></script>
-        <script>
+      
+      
+       
+    
+
+
+        <form action="/url" name="test" data-javascript="demo-form" id="testing" >
+        <input type="text" name="first-name" value=""  required="true" id="first-name" data-validate-message="please enter your first name" />
+        <input type="text" name="last-name" value="" required="true"  id="last-name" data-validate-message="please enter a last name" />
+        <input type="email" name="email" value="" id="email" required="true"  data-validate-message="please enter a valid email" />
+        <button type="submit" >Log in</button>
+
+
+
+    </body>
+      <script src="../lib/warrant.js"></script>
+      <script>
             var expect = chai.expect;
 
             window.mocha.setup({
@@ -23,6 +38,8 @@
                 mocha.run();
             };
         </script>
-        <script src="spec.js"></script>
-    </body>
+
+    
+
+       <script src="spec.js"></script>
 </html>
