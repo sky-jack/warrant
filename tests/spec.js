@@ -1,111 +1,51 @@
 // spec.js
-describe("creating an instance of a validation plugin", function () {
+describe("creating an instance of a validation plugin on a valid form", function () {
 
 	var $form;
 
-	beforeEach(function() {
-		/*
+	before(function() {
+		
 		$form = $([
 			'<form action="/url" name="test" data-javascript="demo-form" id="testing" >',
-			'<input type="text" name="first-name" value="my first name"  required="true" id="first-name" data-validate-message="please enter your first name" />',
-			'<input type="text" name="last-name" value="dsds" required="true"  id="last-name" data-validate-message="please enter a last name" />',
-			'<input type="email" name="email" value="jack@email.com" id="email" required="true"  data-validate-message="please enter a valid email" />',
+			'<input type="text" name="first-name" value="ad"  required="true" id="first-name" data-validation-message="please enter your first name" />',
+			'<input type="text" name="last-name" value="dasd" required="true"  id="last-name" data-validation-message="please enter a last name" />',
+			'<input type="email" name="email" value="jack@email.com" id="email" required="true"  data-validation-message="please enter a valid email" />',
 			'<button type="submit" >Log in</button>',
 			'</form>'
 		].join('\n'));
 
-		$('body').append($form);*/
+		$('body').append($form);
 
 	});
 
 
 	it('is chainable', function() {
 
-
-		//$form.warrant().addClass('testing');
-		//proclaim.strictEqual($form.hasClass('testing'), true);
+		$form.warrant().addClass('testing');
+		proclaim.strictEqual($form.hasClass('testing'), true);
 
 	});
 
-	it('has verified inputs', function() {
+	it('will validate', function() {
 	
-		$('#testing').warrant();
-
-		//$form.data('warrant').selectInputs();
-		//proclaim.strictEqual($form.data('warrant').$inputs.length, 3);
-	});
-
-	/*
-
-
-	it('can validate all inputs', function() {
-
 		$form.warrant();
-	//	$form.data('warrant').selectInputs();
-		$form.data('warrant').validateAllInputs();
-		console.log($form.find('[data-valid]').length);
-		proclaim.greaterThan($form.find('[data-valid]').length, 1);
-		
+		proclaim.strictEqual($form.data('warrant').checkValidity(), true);
 	});
 
 
-	$('[data-javascript=demo-form]').remove();
-
-	*/
 
 });
-
-
-/*
-
-
-describe("creating an instance of a validation plugin with no  helpers", function () {
-	var $form;
-
-	beforeEach(function() {
-		$form = $([
-			'<form action="/url" name="test" data-javascript="demo-form" >',
-			'<input type="text" name="first-name" value="asdasd" required="true"  data-validate-message="please enter a value" />',
-			'<button type="submit" >Log in</button>',
-			'</form>'
-		].join('\n'));
-
-		$('body').append($form);
-
-	});
-
-	it('can validate inputs with no helper specified', function() {
-
-		var $formInstance;
-		$form = $([
-	
-		].join('\n'));
-
-		$('body').append($form);
-
-		$form = $('[data-javascript=demo-form]');
-		$form.warrant();
-		$form.data('warrant').selectInputs();
-		var isValid = $form.data('warrant').validateAllInputs();
-		console.log(isValid);
-		proclaim.strictEqual(isValid, true);
-	});
-
-	$('[data-javascript=demo-form]').remove();
-
-});
-
-?8
 
 // spec.js
-describe("creating an instance of a form and validation plugin that requires helpers", function () {
-	var $form;
+describe("creating an instance of a validation plugin for an invalid form", function () {
 
-	beforeEach(function() {
+		before(function() {
+		
 		$form = $([
-			'<form action="/url" name="test" data-javascript="demo-form"  >',
-			'<input type="text" name="first-name" value="asdasd" id="first-name" required="true" data-validate-message="please enter a value" />',
-			'<input type="email" name="email"  id="email" value="jack@email.com"  required="true" data-validate-message="please enter a valid email" />',
+			'<form action="/url" name="test" data-javascript="demo-form" id="testing" >',
+			'<input type="text" name="first-name" value=""  required="true" id="first-name" data-validation-message="please enter your first name" />',
+			'<input type="text" name="last-name" value="" required="true"  id="last-name" data-validation-message="please enter a last name" />',
+			'<input type="email" name="email" value="jack@email.com" id="email" required="true"  data-validation-message="please enter a valid email" />',
 			'<button type="submit" >Log in</button>',
 			'</form>'
 		].join('\n'));
@@ -114,28 +54,27 @@ describe("creating an instance of a form and validation plugin that requires hel
 
 	});
 
-
-	it('can validate an element using a helper', function() {
-		
-		$form = $('[data-javascript=demo-form]');
+	it('has applied a custom validation message based on inputs data attribute', function() {
+	
 		$form.warrant();
-		var isValid = $form.data('warrant').validateAllInputs();
-		proclaim.strictEqual(isValid, true);
-
+		$form.find('input');
+		var $firstInvalid = $form.find('input');
+		proclaim.strictEqual($firstInvalid[0].validationMessage, $firstInvalid.attr('data-validation-message'));
 	});
 
-	$('[data-javascript=demo-form]').remove();
 
 });
 
+// spec.js
+describe("creating an instance of a validation plugin with an  invalid form and custom validation function", function () {
 
-describe("creating an instance of a form and validation plugin that requires custom functions", function () {
-
-	beforeEach(function() {
+		before(function() {
+		
 		$form = $([
-			'<form action="/url" name="test" data-javascript="demo-form" >',
-			'<input type="text" name="first-name" id="first-name" value="asdasd" required="true" data-validate-message="please enter a value"  />',
-			'<input type="email" name="email" id="email" value="mustbeblue" data-custom="custom1" data-validate="custom1" required="true" data-validate-message="please enter a valid email" />',
+			'<form action="/url" name="test" data-javascript="demo-form" id="testing" >',
+			'<input type="text" name="first-name" value="asdasd"  required="true" id="first-name" data-validation-message="please enter your first name" />',
+			'<input type="text" name="last-name" value="adad" required="true"  id="last-name" data-custom="custom1"  data-validation-message="please enter blue" />',
+			'<input type="email" name="email" value="blue" id="email" required="true"  />',
 			'<button type="submit" >Log in</button>',
 			'</form>'
 		].join('\n'));
@@ -144,24 +83,22 @@ describe("creating an instance of a form and validation plugin that requires cus
 
 	});
 
-	it('can validate an element using a custom function', function() {
-
-		var $form = $('[data-javascript=demo-form]');
-		$form.warrant({},{
-			custom1 : function (value, $input) {
-				if (value == 'mustbeblue') {
+	it('has applies a custom validation function based upon the data attribute present', function() {
+	
+		$form.warrant({}, {
+			custom1 : function (value, input, form) {
+				if (value === 'blue') {
 					return true;
 				}
 			}
 		});
+		//$form.find('input');
 
-		$form.data('warrant').selectInputs();
-		var isValid = $form.data('warrant').validateAllInputs();
-		proclaim.strictEqual(isValid, true);
-		$formInstance = $form.data('warrant');
+
+
+		//var $firstInvalid = $form.find('input');
+		//proclaim.strictEqual($firstInvalid[0].validationMessage, $firstInvalid.attr('data-validation-message'));
 	});
 
-	$('[data-javascript=demo-form]').remove();
-});
 
-*/
+});

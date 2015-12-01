@@ -10,23 +10,9 @@
         <script src="../bower_components/chai/chai.js"></script>
         <script src="../bower_components/mocha/mocha.js"></script>
         <script src="../bower_components/proclaim/lib/proclaim.js"></script>
-      
-      
-       
-    
+        <script src="../lib/warrant.js"></script>
 
-
-        <form action="/url" name="test" data-javascript="demo-form" id="testing" >
-        <input type="text" name="first-name" value=""  required="true" id="first-name" data-validate-message="please enter your first name" />
-        <input type="text" name="last-name" value="" required="true"  id="last-name" data-validate-message="please enter a last name" />
-        <input type="email" name="email" value="" id="email" required="true"  data-validate-message="please enter a valid email" />
-        <button type="submit" >Log in</button>
-
-
-
-    </body>
-      <script src="../lib/warrant.js"></script>
-      <script>
+        <script>
             var expect = chai.expect;
 
             window.mocha.setup({
@@ -37,9 +23,24 @@
             onload = function () {
                 mocha.run();
             };
+
+
         </script>
 
-    
+          <script src="spec.js"></script>
 
-       <script src="spec.js"></script>
+
+       
+    
+        <form action="/url" name="test" data-javascript="demo-form" id="testing" >
+        <input type="text" name="first-name" value=""  required="true" id="first-name" data-validation-message="please enter your first name" />
+        <input type="text" name="last-name" value="" required="true"  id="last-name" data-validation-message="please enter a last name" />
+        <input type="email" name="email" value="" id="email" required="true" data-custom-validation  data-validation-message="please enter a valid email" data-mismatch-message="This email is not valid" />
+        <button type="submit" >Log in</button> 
+        </form> 
+        <script> 
+        $('#testing').warrant();
+        </script>
+    </body>
+      
 </html>
