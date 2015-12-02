@@ -1,5 +1,5 @@
 
-This is a jQuery plugin that provides a simple way to customise the behaviour of the native HTML form validation using data attributes. It uses the native validation supported in modern browsers using the Constraints API but simplifies the process of adding custom error messages for required fields and type mismatch errors and also allows you to specify custom functions for more complicated field validation that might involve multiple fields in all other cases its hands off the task of validation to the browser.
+This is a jQuery plugin that provides a simple way to customise the behaviour of the native HTML form validation using data attributes. It uses the native validation supported in modern browsers using the Constraints API.  It's aim is to simplify the process of adding custom error messages for required fields and type mismatch errors. It also allows you to specify custom functions for more complicated field validation that might involve multiple fields, in all other cases its hands off the task of validation to the browser.
 
 
 ## Browser Support
