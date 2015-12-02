@@ -73,8 +73,8 @@ describe("creating an instance of a validation plugin with an  invalid form and 
 		$form = $([
 			'<form action="/url" name="test" data-javascript="demo-form" id="testing" >',
 			'<input type="text" name="first-name" value="asdasd"  required="true" id="first-name" data-validation-message="please enter your first name" />',
-			'<input type="text" name="last-name" value="adad" required="true"  id="last-name" data-custom="custom1"  data-validation-message="please enter blue" />',
-			'<input type="email" name="email" value="blue" id="email" required="true"  />',
+			'<input type="text" name="last-name" value="blue" required="true"  id="last-name" data-custom="custom1"  data-validation-message="please enter blue" />',
+			'<input type="email" name="email" value=""  data-custom="custom1" id="email" required="true"  />',
 			'<button type="submit" >Log in</button>',
 			'</form>'
 		].join('\n'));
@@ -92,13 +92,39 @@ describe("creating an instance of a validation plugin with an  invalid form and 
 				}
 			}
 		});
-		//$form.find('input');
+		$form.data('warrant').checkValidity();
+		var $customInput = $form.find('[name="last-name"]');
+		console.log('$custom input', $customInput);
+		proclaim.strictEqual($customInput[0].validity.valid, true);
 
 
-
-		//var $firstInvalid = $form.find('input');
-		//proclaim.strictEqual($firstInvalid[0].validationMessage, $firstInvalid.attr('data-validation-message'));
 	});
+
+	it('has applies a custom validation function and shows a custom message if not true', function() {
+		
+
+		var $customInput = $form.find('[name="last-name"]');
+		$customInput.attr('value', '');
+
+		$form.warrant({}, {
+			custom1 : function (value, input, form) {
+				if (value === 'blue') {
+					return true;
+				}
+			}
+		});
+		
+		console.log($customInput[0].validationMessage)
+		proclaim.strictEqual($customInput[0].validationMessage, $customInput.attr('data-validation-message'));
+
+
+
+	});
+
+
+
+
+
 
 
 });
