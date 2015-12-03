@@ -94,7 +94,6 @@ describe("creating an instance of a validation plugin with an  invalid form and 
 		});
 		$form.data('warrant').checkValidity();
 		var $customInput = $form.find('[name="last-name"]');
-		console.log('$custom input', $customInput);
 		proclaim.strictEqual($customInput[0].validity.valid, true);
 
 
@@ -114,7 +113,6 @@ describe("creating an instance of a validation plugin with an  invalid form and 
 			}
 		});
 		
-		console.log($customInput[0].validationMessage)
 		proclaim.strictEqual($customInput[0].validationMessage, $customInput.attr('data-validation-message'));
 
 
