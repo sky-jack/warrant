@@ -29,7 +29,7 @@ describe("creating an instance of a validation plugin on a valid form", function
 	it('will validate', function() {
 	
 		$form.warrant();
-		proclaim.strictEqual($form.data('warrant').checkValidity(), true);
+		proclaim.strictEqual($form.data('warrant').checkFormValidity(), true);
 	});
 
 
@@ -92,7 +92,7 @@ describe("creating an instance of a validation plugin with an  invalid form and 
 				}
 			}
 		});
-		$form.data('warrant').checkValidity();
+		$form.data('warrant').checkFormValidity();
 		var $customInput = $form.find('[name="last-name"]');
 		proclaim.strictEqual($customInput[0].validity.valid, true);
 
