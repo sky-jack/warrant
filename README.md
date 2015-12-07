@@ -59,7 +59,7 @@ If you wish to provide a custom function to overide existing validation you can 
 
 ```
 
-And then specify upon which element it should be used using the 'data-custom' data atrribute. You will also need to provide a custom validation message as above:
+You may then specify upon which element it should be used using the 'data-custom' data atrribute. You will also need to provide a custom validation message as above:
 
  
 
@@ -69,6 +69,20 @@ And then specify upon which element it should be used using the 'data-custom' da
 		<button type="submit" >Submit</button>
 	</form>
 ```
+
+There is also the ability to pass in callback functions to allow for custom functionality in combination with various results of input validation. You may currently supply a callback named onValidInput that fires each time an input in the specified form is marked as valid:
+
+```javascript
+
+	$form.warrant({}, {}, {
+		onValidInput: function(input) {
+			console.log('do something');
+		}
+	});
+
+```
+Further callback options will follow.
+
 
 
 

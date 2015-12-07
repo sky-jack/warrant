@@ -121,8 +121,46 @@ describe("creating an instance of a validation plugin with an  invalid form and 
 
 
 
+});
 
+// spec.js
+describe("creating an instance of a validation plugin with an on input change callback", function () {
 
+		before(function() {
+		
+		$newForm = $([
+			'<form action="/url" name="test" data-javascript="demo-form" id="testing" >',
+			'<input type="text" name="first-name" value="something"  required="true" id="first-name" data-validation-message="please enter your first name" />',
+			'<input type="text" name="last-name" value="" required="true"  id="last-name" data-validation-message="please enter a last name" />',
+			'<input type="email" name="email" value="jack@email.com" id="email" required="true"  data-validation-message="please enter a valid email" />',
+			'<button type="submit" >Log in</button>',
+			'<span id="unwanted-element" >unwanted element</span>',
+			'</form>'
+		].join('\n'));
+
+		$('body').append($newForm);
+
+	});
+
+	it('has removed an element as a result of a callback on change', function() {
+	
+		$newForm.warrant({},{},{
+			onValidInput: function (input) {
+	            $('#unwanted-element').remove();
+            }
+		});
+
+		$("#last-name").val('some data');
+	//	$("#last-name").trigger('input');
+		$("#last-name").trigger('change');
+
+		$("#last-name").on('change', function () {
+
+			proclaim.strictEqual($('#unwanted-element').length, 0);
+
+		});
+
+	});
 
 
 });
