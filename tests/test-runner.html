@@ -26,34 +26,6 @@
         </script>
 
         <script src="spec.js"></script> 
-      <!--
-        <form action="/url" name="test" data-javascript="demo-form" id="testing" >
-        <input type="text" name="first-name" value=""  required="true" id="first-name" data-validation-message="please enter your first name" />
-        <input type="text" name="last-name" value="" required="true"  id="last-name" data-validation-message="please enter a last name" />
-        <input type="email" name="email" value="" id="email" required="true" data-custom="custom1"   data-validation-message="must be blue" data-mismatch-message="This email is stinks" />
-        <span for="author-email" id="registration-password-error" class="error-message" data-error-message="">error</span>
-        <button type="submit" >Log in</button> 
-        </form> 
-        <script> 
-            $('#testing').warrant({}, {
-                custom1 : function (value, input, form) {
-                        if (value === 'blue') {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
-            },
-            {
-                onValidInput: function (input) {
-                    console.log('input callback called', $(input).next('.error-message').remove());
-                    $(input).next('.error-message').remove();
-
-                }
-
-            });
-        </script>
-        -->
     </body>
       
 </html>
